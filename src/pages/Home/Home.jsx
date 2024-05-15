@@ -7,7 +7,7 @@ import styles from "./Home.module.css";
 export default function Home() {
   return (
     <div className={styles.pageContainer}>
-      <Header style="noBg" />
+      <Header cls="noBg" />
       <main className={styles.mainContent}>
         <div className={styles.contentWrapper}>
           <h1 className={styles.mainTitle}>
@@ -25,7 +25,7 @@ export default function Home() {
           </Link>
         </div>
       </main>
-      <Footer style="noBg" />
+      <Footer cls="noBg" />
     </div>
   );
 }

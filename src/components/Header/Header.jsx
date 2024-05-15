@@ -10,11 +10,11 @@ import listIcon from "../../assets/icons/listIcon.svg";
 
 import styles from "./Header.module.css";
 
-export default function Header({ style }) {
+export default function Header({ cls }) {
   const favList = useSelector(selectFav);
-  console.log(favList);
+
   return (
-    <header className={`${styles.headerContainer} ${styles[style]}`}>
+    <header className={`${styles.headerContainer} ${styles[cls]}`}>
       <div className={styles.headerWrapper}>
         <Link to="/">
           <img src={logo} alt="logo" />
