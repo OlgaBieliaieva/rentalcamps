@@ -4,17 +4,17 @@
   /* colors */
   --main-color: #101828;
   --secondary-color: #475467;
-  --form-label-color: rgba(16, 24, 40, 0.60);
+  --form-label-color: rgba(16, 24, 40, 0.6);
   --action-color: #e44848;
   --action-hover-color: #d84343;
   --accent-color: #ffc531;
-  --main-background: #FFFFFF;
+  --main-background: #ffffff;
   --chip-background: #f2f4f7;
   --form-background: #f7f7f7;
-  --loader-color: #544343;
+  --shadow-background: rgba(0, 0, 0, 0.3);
 
   /* fonts */
-  --main-font-family: Inter, sans-serif; 
+  --main-font-family: Inter, sans-serif;
   --main-size: 16px;
   --medium-size: 18px;
   --subtitle: 20px;
@@ -23,7 +23,7 @@
   --medium-line-height: 1.33;
   --subtitle-line-height: 1.2;
   --title-line-height: 1.25;
-  
+
   /* transition */
   --transition-function: cubic-bezier(0.4, 0, 0.2, 1);
   --transition-delay: 250ms;

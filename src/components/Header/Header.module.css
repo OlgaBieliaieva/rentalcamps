@@ -1,0 +1,61 @@
+.headerContainer {
+  width: 100%;
+  background-color: var(--accent-color);
+}
+.headerContainer.noBg{
+  background-color: transparent;
+}
+.headerWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+}
+.contactWrapper {
+  width: 304px;
+  height: 60px;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--shadow-background);
+  border-radius: 12px;
+  color: var(--main-background);
+  font-size: var(--subtitle);
+  font-weight: 700;
+}
+.contactIcon {
+  width: 24px;
+  height: 24px;
+}
+.contactWrapper:hover .contactIcon{
+  width: 32px;
+  height: 32px;
+} 
+.menu {
+  display: flex;
+  gap: 16px;
+}
+.menuItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background-color: var(--shadow-background);
+  border-radius: 12px;
+}
+
+
+.navIcon {
+  width: 24px;
+  height: 24px;
+  transition: width var(--transition-delay) var(--transition-function),
+    height var(--transition-delay) var(--transition-function);
+}
+.menuItem:hover .navIcon {
+  width: 32px;
+  height: 32px;
+}
