@@ -1,10 +1,9 @@
-// import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import useModal from "../../hooks/useModal";
+import useModal from "../../hooks/useModal";
 import { selectFav } from "../../redux/fav/favSelectors";
 import { add, remove } from "../../redux/fav/favSlice";
-// import Modal from "../Modal/Modal";
-// import ProductDetails from "../ProductDetails/ProductDetails";
+import Modal from "../Modal/Modal";
+import ProductDetails from "../ProductDetails/ProductDetails";
 import Chip from "../Chip/Chip";
 
 // icons
@@ -21,7 +20,7 @@ import usersIcon from "../../assets/icons/usersIcon.svg";
 // styles
 import styles from "./ProductCard.module.css";
 
-const details = [
+const camperProps = [
   {
     name: "adults",
     icon: usersIcon,
@@ -50,22 +49,16 @@ const details = [
 
 export default function ProductCard({ product }) {
   const favList = useSelector(selectFav);
-//   const [showDetails, setShowDetails] = useState(false);
-//   const { ref, onOpen, onClose } = useModal();
+
+  const { ref, onOpen, onClose } = useModal();
   const dispatch = useDispatch();
 
   function toggleFav(id) {
-    console.log(id);
     if (favList?.includes(id)) {
       dispatch(remove(id));
     } else {
       dispatch(add(id));
     }
-  }
-
-  function detailsHandler() {
-    // setShowDetails(true);
-    // onOpen();
   }
 
   return (
@@ -118,7 +111,7 @@ export default function ProductCard({ product }) {
         </div>
         <p className={styles.description}>{product.description}</p>
         <ul className={styles.details}>
-          {details.map((item, index) => {
+          {camperProps.map((item, index) => {
             if (item.name === "kitchen" && product.details.kitchen <= 0) {
               return "";
             } else if (
@@ -165,21 +158,13 @@ export default function ProductCard({ product }) {
             }
           })}
         </ul>
-        <button type="button" className={styles.btn} onClick={detailsHandler}>
+        <button type="button" className={styles.btn} onClick={onOpen}>
           Show more
         </button>
       </div>
-      {/* <Modal ref={ref} onClose={onClose} onOpen={onOpen}>
-        {showDetails ? (
-          <ProductDetails
-            product={product}
-            onClose={onClose}
-            showDetailsHandler={setShowDetails}
-          />
-        ) : (
-          <Auth onClose={onClose} />
-        )}
-      </Modal> */}
+      <Modal ref={ref} onClose={onClose} onOpen={onOpen}>
+        <ProductDetails product={product} onClose={onClose} />
+      </Modal>
     </div>
   );
 }

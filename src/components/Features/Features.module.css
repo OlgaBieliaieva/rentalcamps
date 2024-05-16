@@ -1,0 +1,45 @@
+.featuresContainer {
+  display: flex;
+  gap: 24px;
+}
+.featuresWrapper {
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+.chipsList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.propsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.propsListTitle {
+  font-size: var(--subtitle);
+  font-weight: 600;
+  line-height: var(--subtitle-line-height);
+}
+hr {
+  width: 100%;
+  height: 1px;
+  color: var(--borders-color);
+}
+.propsList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: var(--medium-size);
+  font-weight: 500;
+  line-height: var(--medium-line-height);
+  text-transform: capitalize;
+}
+.propItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

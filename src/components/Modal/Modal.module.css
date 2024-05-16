@@ -1,12 +1,9 @@
 .modal {
   position: relative;
-  width: fit-content;
-  height: fit-content;
-  min-width: 300px;
-  max-width: 90%;
-  min-height: 300px;
-  max-height: 90%;
+  width: 1004px;
+  height: 720px;
   overflow: hidden;
+  border-radius: 20px;
 }
 .modal::backdrop {
   background-color: rgba(0, 0, 0, 0.7);
