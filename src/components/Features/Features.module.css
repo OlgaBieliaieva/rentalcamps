@@ -13,6 +13,7 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
+  line-height: var(--title-line-height);
 }
 .propsWrapper {
   display: flex;

@@ -1,5 +1,5 @@
 import Chip from "../Chip/Chip";
-// import BookingForm from "../BookingForm/BookingForm";
+import BookingForm from "../BookingForm/BookingForm";
 // icons
 import ACIcon from "../../assets/icons/ACIcon.svg";
 import bedIcon from "../../assets/icons/bedIcon.svg";
@@ -63,7 +63,7 @@ const camperProps = [
 ];
 const properties = ["form", "length", "width", "height", "tank", "consumption"];
 
-export default function Features({ product, onClose }) {
+export default function Features({ product }) {
   return (
     <div className={styles.featuresContainer}>
       <div className={styles.featuresWrapper}>
@@ -154,7 +154,7 @@ export default function Features({ product, onClose }) {
           </ul>
         </div>
       </div>
-      {/* <BookingForm product={product} onClose={onClose} /> */}
+      <BookingForm product={product} />
     </div>
   );
 }

@@ -1,6 +1,7 @@
-import { 
-  // useState, 
-  useEffect } from "react";
+import {
+  // useState,
+  useEffect,
+} from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { useSearchParams } from "react-router-dom";
 import {
@@ -24,7 +25,7 @@ export default function Catalog() {
   useEffect(() => {
     dispatch(fetchAll());
   }, [dispatch]);
- console.log(campers);
+  console.log(campers);
   return (
     <div className={styles.pageContainer}>
       <Header />

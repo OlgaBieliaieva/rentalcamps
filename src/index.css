@@ -43,6 +43,10 @@ body {
   line-height: var(--main-line-height);
 }
 
+body > .air-datepicker-global-container{
+  z-index: 10000;
+}
+
 h1,
 h2,
 h3,

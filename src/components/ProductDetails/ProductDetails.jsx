@@ -19,8 +19,8 @@ const content = [
 
 export default function ProductDetails({ product, onClose }) {
   const { currentItem, changeItem } = useTabs(0, content);
-  content[0].component = <Features product={product} onClose={onClose} />;
-  content[1].component = <Reviews product={product} onClose={onClose} />;
+  content[0].component = <Features product={product} />;
+  content[1].component = <Reviews product={product} />;
 
   return (
     <div className={styles.detailsContainer}>

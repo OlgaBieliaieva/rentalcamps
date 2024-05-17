@@ -1,8 +1,8 @@
-// import BookingForm from "../BookingForm/BookingForm";
+import BookingForm from "../BookingForm/BookingForm";
 import starIcon from "../../assets/icons/starIcon.svg";
 import styles from "./Reviews.module.css";
 
-export default function Reviews({ product, onClose }) {
+export default function Reviews({ product }) {
   return (
     <div className={styles.reviewsContainer}>
       <div className={styles.reviewsWrapper}>
@@ -31,7 +31,7 @@ export default function Reviews({ product, onClose }) {
           ))}
         </ul>
       </div>
-      {/* <BookingForm product={product} onClose={onClose} /> */}
+      <BookingForm product={product} />
     </div>
   );
 }
