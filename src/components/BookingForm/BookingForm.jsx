@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import calendarIcon from "../../assets/icons/calendarIcon.svg";
 import styles from "./BookingForm.module.css";
 
@@ -11,6 +12,7 @@ const initialState = {
 
 export default function BookingForm() {
   const [formState, setFormState] = useState({ ...initialState });
+  const [error, setError] = useState("");
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -19,18 +21,15 @@ export default function BookingForm() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(formState);
-    // const date = formState.date;
-    // console.log(date);
+
     if (
-      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(formState.email)
-      // &&
-      // Date(formState.date) >= Date.now()
+      /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(formState.email) &&
+      Date.parse(formState.date) > Date.now()
     ) {
-      console.log("Success");
       reset();
+      window.location.reload();
     } else {
-      console.log("Error");
+      setError("Booking date must be in the future!");
     }
   }
   function showCal(e) {
@@ -68,7 +67,7 @@ export default function BookingForm() {
           className={styles.formInput}
           required
           type="email"
-          pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}"
+          pattern="[a-zA-Z0-9._]+@[a-zA-Z0-9.]+\.[a-zA-Z]{2,4}"
           placeholder="Email"
           autoComplete="off"
           name="email"
@@ -103,9 +102,12 @@ export default function BookingForm() {
           onChange={handleChange}
         />
 
-        <button type="submit" className={styles.btn}>
-          Send
-        </button>
+        <div className={styles.sbmContainer}>
+          <button type="submit" className={styles.btn}>
+            Send
+          </button>
+          {error.length > 0 ? <p className={styles.errorMsg}>{error}</p> : null}
+        </div>
       </form>
     </div>
   );
