@@ -1,0 +1,93 @@
+.filterForm {
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.inputLabel {
+  position: relative;
+  text-transform: capitalize;
+}
+.filterInput {
+  width: 100%;
+  padding: 18px;
+  padding-left: 42px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: #f2f4f7;
+  font-size: 16px;
+  margin-top: 8px;
+}
+.inputIcon {
+  position: absolute;
+  top: 48px;
+  left: 18px;
+  width: 18px;
+  height: 20px;
+}
+.filterSectionTitle {
+  font-size: 20px;
+  font-weight: 700px;
+}
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+.radioLabel {
+  width: 112px;
+  height: 95px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 10px;
+  text-transform: capitalize;
+  text-align: center;
+}
+.active {
+  border-color: #e44848;
+}
+.filterSectionWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+hr {
+  width: 100%;
+  height: 1px;
+  color: rgba(16, 24, 40, 0.2);
+}
+.formGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.checkboxLabel {
+  width: 112px;
+  height: 95px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 10px;
+  text-transform: capitalize;
+  text-align: center;
+}
+.btn {
+  width: fit-content;
+  padding: 16px 60px;
+  border-radius: 200px;
+  background-color: #e44848;
+  color: #ffffff;
+}
