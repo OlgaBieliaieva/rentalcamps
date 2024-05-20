@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectFav } from "../../redux/fav/favSelectors";
 import logo from "../../assets/images/logo.png";
@@ -26,7 +26,10 @@ export default function Header({ cls }) {
         <nav>
           <ul className={styles.menu}>
             <li className={styles.menuItem}>
-              <Link to="/favorites">
+              <NavLink
+                to="/favorites"
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
                 {favList?.length > 0 ? (
                   <img
                     src={favFilledIcon}
@@ -40,17 +43,23 @@ export default function Header({ cls }) {
                     className={styles.navIcon}
                   />
                 )}
-              </Link>
+              </NavLink>
             </li>
             <li className={styles.menuItem}>
-              <Link to={`/catalog`}>
+              <NavLink
+                to="/catalog"
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
                 <img src={listIcon} alt="catalog" className={styles.navIcon} />
-              </Link>
+              </NavLink>
             </li>
             <li className={styles.menuItem}>
-              <Link to="/">
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
                 <img src={homeIcon} alt="home" className={styles.navIcon} />
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
