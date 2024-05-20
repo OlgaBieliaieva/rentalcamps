@@ -8,7 +8,7 @@
   --action-color: #e44848;
   --action-hover-color: #d84343;
   --accent-color: #ffc531;
-  --borders-color: rgba(16, 24, 40, 0.20);
+  --borders-color: rgba(16, 24, 40, 0.2);
   --main-background: #ffffff;
   --chip-background: #f2f4f7;
   --form-background: #f7f7f7;
@@ -41,10 +41,6 @@ body {
   font-family: var(--main-font-family);
   font-size: var(--main-size);
   line-height: var(--main-line-height);
-}
-
-body > .air-datepicker-global-container{
-  z-index: 10000;
 }
 
 h1,
@@ -85,17 +81,4 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-}
-
-.visually-hidden {
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  border: 0;
-  padding: 0;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  margin: -1px;
 }
