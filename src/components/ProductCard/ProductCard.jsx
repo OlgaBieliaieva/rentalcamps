@@ -49,7 +49,6 @@ const camperProps = [
 
 export default function ProductCard({ product }) {
   const favList = useSelector(selectFav);
-
   const { ref, onOpen, onClose } = useModal();
   const dispatch = useDispatch();
 

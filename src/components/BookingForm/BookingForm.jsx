@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import calendarIcon from "../../assets/icons/calendarIcon.svg";
 import styles from "./BookingForm.module.css";
 
@@ -52,28 +51,32 @@ export default function BookingForm() {
         Stay connected! We are always ready to help you.
       </p>
       <form onSubmit={handleSubmit} className={styles.bookingForm}>
-        <input
-          className={styles.formInput}
-          required
-          type="text"
-          placeholder="Name"
-          autoComplete="off"
-          name="name"
-          value={formState.name}
-          onChange={handleChange}
-        />
+        <label>
+          <input
+            className={styles.formInput}
+            required
+            type="text"
+            placeholder="Name"
+            autoComplete="off"
+            name="name"
+            value={formState.name}
+            onChange={handleChange}
+          />
+        </label>
 
-        <input
-          className={styles.formInput}
-          required
-          type="email"
-          pattern="[a-zA-Z0-9._]+@[a-zA-Z0-9.]+\.[a-zA-Z]{2,4}"
-          placeholder="Email"
-          autoComplete="off"
-          name="email"
-          value={formState.email}
-          onChange={handleChange}
-        />
+        <label>
+          <input
+            className={styles.formInput}
+            required
+            type="email"
+            pattern="[a-zA-Z0-9._]+@[a-zA-Z0-9.]+\.[a-zA-Z]{2,4}"
+            placeholder="Email"
+            autoComplete="off"
+            name="email"
+            value={formState.email}
+            onChange={handleChange}
+          />
+        </label>
 
         <label className={`${styles.formInput} ${styles.datepickerToggle}`}>
           <input
@@ -94,13 +97,15 @@ export default function BookingForm() {
           </span>
         </label>
 
-        <textarea
-          rows={5}
-          placeholder="Comment"
-          name="comment"
-          value={formState.comment}
-          onChange={handleChange}
-        />
+        <label>
+          <textarea
+            rows={5}
+            placeholder="Comment"
+            name="comment"
+            value={formState.comment}
+            onChange={handleChange}
+          />
+        </label>
 
         <div className={styles.sbmContainer}>
           <button type="submit" className={styles.btn}>

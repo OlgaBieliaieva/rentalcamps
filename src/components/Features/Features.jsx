@@ -12,7 +12,7 @@ import freezerIcon from "../../assets/icons/freezerIcon.svg";
 import cdIcon from "../../assets/icons/cdIcon.svg";
 import radioIcon from "../../assets/icons/radioIcon.svg";
 import hobIcon from "../../assets/icons/hobIcon.svg";
-//
+//styles
 import styles from "./Features.module.css";
 
 const camperProps = [

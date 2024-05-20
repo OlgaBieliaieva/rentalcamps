@@ -1,80 +1,55 @@
-import { 
-    // useState, 
-    useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { useSearchParams } from "react-router-dom";
-// import {
-//   selectFilteredCampers,
-//   selectIsLoading,
-//   selectError,
-//   selectCurrentUser,
-// } from "../../redux/selectors";
-// import { filter } from "../../redux/appSlice";
-// import { fetchAllCampers } from "../../redux/operations";
+import { useSearchParams } from "react-router-dom";
 import { selectFav } from "../../redux/fav/favSelectors";
 import {
-  selectCampers,
+  selectFilteredCampers,
   selectIsLoading,
   selectError,
 } from "../../redux/campers/campersSelectors";
+import { filter } from "../../redux/campers/campersSlice";
 import { fetchAll } from "../../redux/campers/campersOperations";
 import Loader from "../../components/Loader/Loader";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-// import Filters from "../../components/Filters/Filters";
+import Filters from "../../components/Filters/Filters";
 import ProductList from "../../components/ProductList/ProductList";
-// import Pagination from "../../components/Pagination/Pagination";
 import styles from "./Favorites.module.css";
 
-// const pagOpts = {
-//   limit: 4,
-//   defaultPage: 1,
-// };
-
-// let params = {};
+let params = {};
+const pageLimit = 4;
 
 export default function Favorites() {
-  //   const [page, setPage] = useState(pagOpts.defaultPage);
-  //   const [searchParams, setSearchParams] = useSearchParams();
-  //   const filteredCampers = useSelector(selectFilteredCampers);
-  //   const user = useSelector(selectCurrentUser);
-  const campers = useSelector(selectCampers);
+  const [page, setPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filteredCampers = useSelector(selectFilteredCampers);
   const favList = useSelector(selectFav);
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    params = {};
+    for (const [key, value] of searchParams.entries()) {
+      params[key] = value;
+    }
     dispatch(fetchAll());
-  }, [dispatch]);
-  console.log(campers);
-
-  //   useEffect(() => {
-  //     params = {};
-  //     for (const [key, value] of searchParams.entries()) {
-  //       key !== "equipment"
-  //         ? (params[key] = value)
-  //         : params.equipment
-  //         ? params.equipment.push(value)
-  //         : (params.equipment = [value]);
-  //     }
-  //     dispatch(fetchAllCampers());
-  //     dispatch(filter({ ...params }));
-  //   }, [searchParams, dispatch]);
+    dispatch(filter({ ...params }));
+  }, [searchParams, dispatch]);
 
   return (
     <div className={styles.pageContainer}>
       <Header />
       <main className={styles.mainContent}>
-        <h1 className={styles.visuallyHidden}>Catalog</h1>
+        <h1 className={styles.visuallyHidden}>Favorites</h1>
         <div className={styles.contentWrapper}>
-          {/* <section className={styles.sideBar}>
+          <section className={styles.sideBar}>
             <h2 className={styles.sectionTitle}>Filters</h2>
             <Filters
-              createSearchParams={setSearchParams}
-              onPageChange={setPage}
+              setSearchParams={setSearchParams}
+              searchParams={searchParams}
             />
-          </section> */}
+          </section>
           <section className={styles.contentSpace}>
             {isLoading && !error ? (
               <Loader />
@@ -86,7 +61,7 @@ export default function Favorites() {
                   <>
                     <h2 className={styles.sectionTitle}>
                       {
-                        campers?.filter((camper) =>
+                        filteredCampers?.filter((camper) =>
                           favList?.includes(camper.id)
                         ).length
                       }
@@ -94,25 +69,24 @@ export default function Favorites() {
                     </h2>
                     <div className={styles.content}>
                       <ProductList
-                        campers={
-                          campers?.filter((camper) =>
-                            favList?.includes(camper.id)
-                          )
-                          //   .slice(
-                          //     page * pagOpts.limit - pagOpts.limit,
-                          //     page * pagOpts.limit
-                          //   )
-                        }
+                        campers={filteredCampers
+                          ?.filter((camper) => favList?.includes(camper.id))
+                          .slice(0, page * pageLimit)}
                       />
-                      {/* <Pagination
-                        pages={Math.ceil(
-                          filteredCampers.filter((camper) =>
-                            user?.favorites?.includes(camper.id)
-                          ).length / pagOpts.limit
-                        )}
-                        currentPage={page}
-                        onPageChange={setPage}
-                      /> */}
+                      {page <
+                        Math.ceil(
+                          filteredCampers?.filter((camper) =>
+                            favList?.includes(camper.id)
+                          ).length / pageLimit
+                        ) && (
+                        <button
+                          type="button"
+                          className={styles.btn}
+                          onClick={() => setPage(page + 1)}
+                        >
+                          Load more
+                        </button>
+                      )}
                     </div>
                   </>
                 )}

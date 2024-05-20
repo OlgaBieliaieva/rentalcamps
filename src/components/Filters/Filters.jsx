@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { filter } from "../../redux/campers/campersSlice";
 // Icons
 import mapPinIcon from "../../assets/icons/mapPinIcon.svg";
 import transmissionIcon from "../../assets/icons/transmissionIcon.svg";
@@ -45,24 +47,80 @@ const initialState = {
   location: "",
   transmission: "",
   form: "",
-  equipment: [],
+  airConditioner: false,
+  shower: false,
+  kitchen: false,
+  freezer: false,
+  TV: false,
 };
 
-export default function Filters() {
+export default function Filters({ setSearchParams, searchParams }) {
   const [formState, setFormState] = useState({ ...initialState });
-//   const [error, setError] = useState("");
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const initialState = {
+      location: "",
+      transmission: "",
+      form: "",
+      airConditioner: false,
+      shower: false,
+      kitchen: false,
+      freezer: false,
+      TV: false,
+    };
+    for (const [key, value] of searchParams.entries()) {
+      value === "true"
+        ? (initialState[key] = true)
+        : (initialState[key] = value);
+    }
+    setFormState({ ...initialState });
+  }, [searchParams, dispatch]);
 
   function handleChange(e) {
-    const { name, value } = e.target;
-    setFormState({ ...formState, [name]: value });
+    const { name, value, checked } = e.target;
+    if (name !== "location" && name !== "transmission" && name !== "form") {
+      setFormState({
+        ...formState,
+        [name]: checked,
+      });
+    } else {
+      setFormState({ ...formState, [name]: value });
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    const newSearchParams = {};
+
+    for (const param in formState) {
+      if (
+        param !== "location" &&
+        param !== "transmission" &&
+        param !== "form"
+      ) {
+        if (e.target.elements[param].checked) {
+          newSearchParams[param] = e.target.elements[param].checked;
+        }
+      } else {
+        if (e.target.elements[param].value) {
+          newSearchParams[param] = e.target.elements[param].value;
+        }
+      }
+
+      setSearchParams({ ...newSearchParams });
+      dispatch(filter({ ...newSearchParams }));
+    }
   }
 
   return (
-    <form className={styles.filterForm}>
+    <form className={styles.filterForm} onSubmit={handleSubmit}>
       <label className={styles.inputLabel}>
         Location
         <input
           className={styles.filterInput}
+          placeholder="City"
           type="text"
           name="location"
           value={formState.location}
@@ -87,7 +145,7 @@ export default function Filters() {
               className={`${styles.hidden}`}
               type="radio"
               name="transmission"
-              value={formState.transmission}
+              value="manual"
               onChange={handleChange}
             />
             <img src={transmissionIcon} alt="transmission" />
@@ -102,7 +160,7 @@ export default function Filters() {
               className={`${styles.hidden}`}
               type="radio"
               name="transmission"
-              value={formState.transmission}
+              value="automatic"
               onChange={handleChange}
             />
             <img src={transmissionIcon} alt="transmission" />
@@ -127,7 +185,7 @@ export default function Filters() {
               className={`${styles.hidden}`}
               type="radio"
               name="form"
-              value={formState.form}
+              value="van"
               onChange={handleChange}
             />
             <img src={vanIcon} alt="van" />
@@ -142,7 +200,7 @@ export default function Filters() {
               className={`${styles.hidden}`}
               type="radio"
               name="form"
-              value={formState.form}
+              value="fullyIntegrated"
               onChange={handleChange}
             />
             <img src={fullyIntIcon} alt="fully integrated" />
@@ -157,7 +215,7 @@ export default function Filters() {
               className={`${styles.hidden}`}
               type="radio"
               name="form"
-              value={formState.form}
+              value="alcove"
               onChange={handleChange}
             />
             <img src={alcoveIcon} alt="alcove" />
@@ -177,14 +235,15 @@ export default function Filters() {
             <label
               key={index}
               className={`${styles.checkboxLabel} ${
-                formState.equipment.includes(item.name) ? styles.active : ""
+                formState[item.name] === true ? styles.active : ""
               }`}
             >
               <input
                 className={`${styles.hidden}`}
                 type="checkbox"
-                name="equipment"
-                value={formState[item.name]}
+                name={item.name}
+                checked={formState[item.name]}
+                value={item.name}
                 onChange={handleChange}
               />
               <img src={item.icon} alt={item.name} />

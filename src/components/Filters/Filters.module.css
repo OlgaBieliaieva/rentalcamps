@@ -15,7 +15,7 @@
   border-radius: 10px;
   border: none;
   outline: none;
-  background-color: #f2f4f7;
+  background-color: var(--form-background);
   font-size: 16px;
   margin-top: 8px;
 }
@@ -27,7 +27,7 @@
   height: 20px;
 }
 .filterSectionTitle {
-  font-size: 20px;
+  font-size: var(--subtitle);
   font-weight: 700px;
 }
 .hidden {
@@ -49,14 +49,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(16, 24, 40, 0.2);
+  border: 1px solid var(--borders-color);
   border-radius: 10px;
   text-transform: capitalize;
   text-align: center;
 }
-.active {
-  border-color: #e44848;
-}
+
 .filterSectionWrapper {
   display: flex;
   flex-direction: column;
@@ -65,7 +63,7 @@
 hr {
   width: 100%;
   height: 1px;
-  color: rgba(16, 24, 40, 0.2);
+  color: var(--borders-color);
 }
 .formGroup {
   display: flex;
@@ -79,7 +77,7 @@ hr {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid rgba(16, 24, 40, 0.2);
+  border: 1px solid var(--borders-color);
   border-radius: 10px;
   text-transform: capitalize;
   text-align: center;
@@ -87,7 +85,17 @@ hr {
 .btn {
   width: fit-content;
   padding: 16px 60px;
+  font-weight: 500;
   border-radius: 200px;
-  background-color: #e44848;
-  color: #ffffff;
+  background-color: var(--action-color);
+  color: var(--main-background);
+  transition: background-color var(--transition-delay)
+    var(--transition-function);
+}
+.btn:hover,
+.btn:focus {
+  background-color: var(--action-hover-color);
+}
+.active {
+  border-color: var(--action-color);
 }

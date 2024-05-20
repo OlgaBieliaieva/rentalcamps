@@ -2,7 +2,7 @@
   width: 100%;
   background-color: var(--accent-color);
 }
-.headerContainer.noBg{
+.headerContainer.noBg {
   background-color: transparent;
 }
 .headerWrapper {
@@ -30,10 +30,10 @@
   width: 24px;
   height: 24px;
 }
-.contactWrapper:hover .contactIcon{
+.contactWrapper:hover .contactIcon {
   width: 32px;
   height: 32px;
-} 
+}
 .menu {
   display: flex;
   gap: 16px;
@@ -47,7 +47,6 @@
   background-color: var(--shadow-background);
   border-radius: 12px;
 }
-
 
 .navIcon {
   width: 24px;

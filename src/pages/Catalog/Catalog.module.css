@@ -15,14 +15,14 @@
   margin: 0 auto;
 }
 .sideBar {
-  width: calc(100% - 890px - 64px);
+  width: calc(100% - 888px - 64px);
   display: flex;
   flex-direction: column;
   gap: 24px;
   padding-top: 48px;
 }
 .contentSpace {
-  width: 890px;
+  width: 888px;
   display: flex;
   flex-direction: column;
   gap: 24px;

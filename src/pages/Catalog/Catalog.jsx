@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import {
-  selectCampers,
-  // selectFilteredCampers,
+  selectFilteredCampers,
   selectIsLoading,
   selectError,
 } from "../../redux/campers/campersSelectors";
-import { fetchAll, fetchByReq } from "../../redux/campers/campersOperations";
+import { filter } from "../../redux/campers/campersSlice";
+import { fetchAll } from "../../redux/campers/campersOperations";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Filters from "../../components/Filters/Filters";
@@ -20,11 +20,8 @@ const pageLimit = 4;
 
 export default function Catalog() {
   const [page, setPage] = useState(1);
-  const [searchParams, 
-    // setSearchParams
-  ] = useSearchParams();
-  const campers = useSelector(selectCampers);
-  // const filteredCampers = useSelector(selectFilteredCampers);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filteredCampers = useSelector(selectFilteredCampers);
   const error = useSelector(selectError);
   const loading = useSelector(selectIsLoading);
   const dispatch = useDispatch();
@@ -32,27 +29,12 @@ export default function Catalog() {
   useEffect(() => {
     params = {};
     for (const [key, value] of searchParams.entries()) {
-      // key !== "equipment"
-      // ?
       params[key] = value;
-      // : params.equipment
-      // ? params.equipment.push(value)
-      // : (params.equipment = [value]);
     }
-    // getParams();
     dispatch(fetchAll());
-    dispatch(fetchByReq(params));
+    dispatch(filter({ ...params }));
   }, [searchParams, dispatch]);
 
-  // function getParams() {
-  //   params = {};
-  //   for (const [key, value] of searchParams.entries()) {
-  //     params[key] = value;
-  //   }
-  // }
-
-  console.log(campers);
-  console.log(page);
   return (
     <div className={styles.pageContainer}>
       <Header />
@@ -62,8 +44,8 @@ export default function Catalog() {
           <section className={styles.sideBar}>
             <h2 className={styles.sectionTitle}>Filters</h2>
             <Filters
-              // createSearchParams={setSearchParams}
-              // onPageChange={setPage}
+              setSearchParams={setSearchParams}
+              searchParams={searchParams}
             />
           </section>
           <section className={styles.contentSpace}>
@@ -72,23 +54,14 @@ export default function Catalog() {
             ) : (
               <>
                 <h2 className={styles.sectionTitle}>
-                  {campers.length}&#160;campers available
+                  {filteredCampers.length}&#160;campers available
                 </h2>
                 <div className={styles.content}>
                   <ProductList
-                    // campers={filteredCampers}
-                    campers={campers.slice(0, page * pageLimit)}
-                    // campers={filteredCampers.slice(
-                    //   page * pagOpts.limit - pagOpts.limit,
-                    //   page * pagOpts.limit
-                    // )}
+                    campers={filteredCampers.slice(0, page * pageLimit)}
                   />
-                  {/* <Pagination
-                    pages={Math.ceil(filteredCampers.length / pagOpts.limit)}
-                    currentPage={page}
-                    onPageChange={setPage}
-                  /> */}
-                  {page < Math.ceil(campers.length / pageLimit) && (
+
+                  {page < Math.ceil(filteredCampers.length / pageLimit) && (
                     <button
                       type="button"
                       className={styles.btn}
