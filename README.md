@@ -11,11 +11,13 @@ A personal project that helps to implement the most daring ideas and choose a ca
 - [figma.com](https://www.figma.com/design/8TKMBx3TyyUwxQ8Z7TOSkQ/Test-(Copy)?node-id=1%3A2549&t=NiUpeyecyYugV9Hv-1)
 
 
+
 ## Tech Stack
 
 **Client:** React, Redux, axios
 
 **Server:** mockapi.io
+
 
 
 ## Features
@@ -26,9 +28,11 @@ A personal project that helps to implement the most daring ideas and choose a ca
 - Online booking
 
 
+
 ## Deployed
 
 - [netlify.com](https://rentalcamps.netlify.app/)
+
 
 
 ## Authors
