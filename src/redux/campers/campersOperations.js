@@ -1,13 +1,13 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "https://6618f1089a41b1b3dfbe61ce.mockapi.io/api/";
+axios.defaults.baseURL = "http://rentalcamps-api-env.eba-xpvcfwgq.eu-central-1.elasticbeanstalk.com/api";
 
 export const fetchAll = createAsyncThunk(
   "campers/fetchAll",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get(`advert`);
+      const response = await axios.get(`/campers`);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
