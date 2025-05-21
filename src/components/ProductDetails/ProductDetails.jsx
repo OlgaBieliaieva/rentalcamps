@@ -57,7 +57,11 @@ export default function ProductDetails({ product, onClose }) {
           {product.gallery.map((item, index) => (
             <li key={index}>
               <div className={styles.imgWrapper}>
-                <img className={styles.cardImg} src={item} alt={product.name} />
+                <img
+                  className={styles.cardImg}
+                  src={item.thumb}
+                  alt={product.name}
+                />
               </div>
             </li>
           ))}

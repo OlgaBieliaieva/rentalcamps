@@ -65,7 +65,7 @@ export default function ProductCard({ product }) {
       <div className={styles.imgWrapper}>
         <img
           className={styles.cardImg}
-          src={product.gallery[0]}
+          src={product.gallery[0].thumb}
           alt={product.name}
         />
       </div>
@@ -111,12 +111,9 @@ export default function ProductCard({ product }) {
         <p className={styles.description}>{product.description}</p>
         <ul className={styles.details}>
           {camperProps.map((item, index) => {
-            if (item.name === "kitchen" && product.details.kitchen <= 0) {
+            if (item.name === "kitchen" && product.kitchen <= 0) {
               return "";
-            } else if (
-              item.name === "airConditioner" &&
-              product.details.airConditioner <= 0
-            ) {
+            } else if (item.name === "airConditioner" && product.AC <= 0) {
               return "";
             } else {
               return (
@@ -127,7 +124,7 @@ export default function ProductCard({ product }) {
                       <span>
                         {item.name === "adults"
                           ? `${product.adults} ${item.name}`
-                          : `${product.details.beds} ${item.name}`}
+                          : `${product.beds} ${item.name}`}
                       </span>
                     ) : (
                       ""

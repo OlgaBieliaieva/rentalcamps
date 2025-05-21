@@ -69,26 +69,17 @@ export default function Features({ product }) {
       <div className={styles.featuresWrapper}>
         <ul className={styles.chipsList}>
           {camperProps.map((item, index) => {
-            if (item.name === "kitchen" && product.details.kitchen <= 0) {
+            if (item.name === "kitchen" && product.kitchen <= 0) {
               return "";
-            } else if (
-              item.name === "airConditioner" &&
-              product.details.airConditioner <= 0
-            ) {
+            } else if (item.name === "airConditioner" && product.AC <= 0) {
               return "";
-            } else if (item.name === "CD" && product.details.CD <= 0) {
+            } else if (item.name === "CD" && product.CD <= 0) {
               return "";
-            } else if (item.name === "radio" && product.details.radio <= 0) {
+            } else if (item.name === "radio" && product.radio <= 0) {
               return "";
-            } else if (
-              item.name === "microwave" &&
-              product.details.microwave <= 0
-            ) {
+            } else if (item.name === "microwave" && product.microwave <= 0) {
               return "";
-            } else if (
-              item.name === "freezer" &&
-              product.details.freezer <= 0
-            ) {
+            } else if (item.name === "freezer" && product.freezer <= 0) {
               return "";
             } else {
               return (
@@ -102,8 +93,8 @@ export default function Features({ product }) {
                         {item.name === "adults"
                           ? `${product.adults} ${item.name}`
                           : item.name === "beds"
-                          ? `${product.details.beds} ${item.name}`
-                          : `${product.details.hob} ${item.name}`}
+                          ? `${product.beds} ${item.name}`
+                          : `${product.hob} ${item.name}`}
                       </span>
                     ) : (
                       ""
